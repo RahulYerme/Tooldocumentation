@@ -1,0 +1,35 @@
+Linux basic Commands:
+
+*)changing File Permissions:
+
+1. chmod u=rwx,g=rwx,o=rwx [file_name]
+--> U For User, g For Group, o For Owner.
+
+2.chmod +x *, chmod +w * 
+-->Assign Only execute permission, Assign Only write Permission.
+
+*)Find Size Of directory using 'du' command:
+-->du -h /var
+
+*)display total disk usage of a particular directory, use the -c command:
+--> sudo du -c /var
+
+*)Get Size of Directory in Linux Using tree Command
+--> tree -h
+
+*)SSH Connection steps:- 
+-->https://stackoverflow.com/questions/36300446/ssh-permission-denied-publickey-gssapi-with-mic
+
+*)Check Open ports 
+  sudo lsof -i -P -n | grep LISTEN
+
+*)Check Running processes memory
+ 
+  ps aux --sort -%mem 
+*)Security updates
+apt list --upgradable | grep "\-security"
+
+*)Updates
+apt list --upgradable
+
+Admin@123456

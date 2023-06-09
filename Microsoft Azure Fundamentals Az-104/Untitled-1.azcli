@@ -1,0 +1,5 @@
+az group create --name "cli-grp" --location "north Europe"
+az network vnet show -g cli-grp -n cli-network
+az network vnet list
+az vm create --resource-group cli-grp --name appvm --image Win2019Datacenter --public-ip-sku Standard --admin-username demouser --admin-password newuser@123 --size "Standard_DS2_v2"
+az disk create --name datda-disk --resource-group cli-grp --location "North Europe" --siz-gb 16 

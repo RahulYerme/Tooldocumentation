@@ -1,0 +1,91 @@
+import groovy.json.*
+import hudson.model.*
+import jenkins.model.*
+
+def cancelPreviousBuilds() {
+    echo env.gitlabSourceBranch
+    def jobName = env.JOB_NAME
+    def currentBuildNumber = env.BUILD_NUMBER.toInteger()
+    def currentJob = Jenkins.instance.getItemByFullName(jobName)
+    for (def build : currentJob.builds) {
+    	def buildBranch = build.getEnvironment()['gitlabSourceBranch']
+    	if (build.isBuilding() && (build.number.toInteger() < currentBuildNumber) && (buildBranch == gitlabSourceBranch)) {
+            echo "Older build ${build.number} Source Branch is ${buildBranch}"
+            echo "Older build still queued. Sending kill signal to build number: ${build.number}"
+            build.doTerm()
+        }
+    }
+}
+
+properties(
+	[gitLabConnection('gitlab.secotools.net'),
+	[$class: 'RebuildSettings',autoRebuild: true, rebuildDisabled: false],
+	buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '10', numToKeepStr: '20')),
+	[$class: 'EnvInjectJobProperty',
+		info: [loadFilesFromMaster: false, propertiesContent: '''MSTEST2=true''', secureGroovyScript: [classpath: [], sandbox: false, script: '']],
+		keepBuildVariables: true,
+		keepJenkinsSystemVariables: true,
+		on: true]])
+pipeline {
+    agent {
+        label "windows"
+    }
+    options {
+      gitLabConnection('gitlab.secotools.net')
+      //disableConcurrentBuilds(abortPrevious: true)
+    }
+	triggers {
+        gitlab(
+            pendingBuildName: 'Jenkins 2',
+            secretToken: "5b9b92d40302107db3e5bf8f2b42588e",
+            cancelPendingBuildsOnUpdate: true,
+            skipWorkInProgressMergeRequest: false,
+			triggerOnPush: false,
+			triggerOnMergeRequest: true,
+			triggerOpenMergeRequestOnPush: 'both',
+			triggerOnNoteRequest: true,
+			noteRegex: "trigger build",
+			branchFilterType: 'All')
+    }
+	stages {
+		stage('Build and validate') {
+			steps {
+			    script {
+			        if(gitlabMergeRequestTitle.startsWith("ExternalTest")){
+			            currentBuild.result = 'ABORTED'
+                        error("Aborting the build because 'ExternalTest prefix in MR title' ") 
+			        }
+                    cancelPreviousBuilds()
+                }
+				build job: 'validate',
+					parameters: [
+						booleanParam(name: 'ARCHIVE_ARTIFACTS', value: false),
+						string(name: 'SourceBranch', value: env.gitlabSourceBranch),
+						string(name: 'TargetBranch', value: env.gitlabTargetBranch),
+						string(name: 'TestList', value: (env.gitlabMergeRequestDescription ?: '').findAll(~/TMM[0-9]+_[a-zA-Z0-9_]+/).join(',')),
+						booleanParam(name: 'RunUnitTests', value: !(env.gitlabMergeRequestTitle ?: '').contains('[DONTTEST]'))
+					]
+			}
+		}
+	}
+	post {
+		failure {
+			updateGitlabCommitStatus name: 'Jenkins 2', state: 'failed'
+			addGitLabMRComment comment: 'Build Failure - Url: ' + currentBuild.absoluteUrl
+		}
+		success {
+			updateGitlabCommitStatus name: 'Jenkins 2', state: 'success'
+			addGitLabMRComment comment: 'Build Success - Url: ' + currentBuild.absoluteUrl
+		}
+		aborted {
+			echo "Aborted..."
+			updateGitlabCommitStatus name: 'Jenkins 2', state: 'canceled'
+			// Avoid having a slack regression notification
+		}
+		fixed {
+			slackSend color: 'good',
+					message: "The pipeline ${currentBuild.fullDisplayName} completed successfully."
+		}
+		regression {
+			slackSend color: 'danger',
+					message: "The pipeline ${currentBuild.fullDisplayName} regressed."

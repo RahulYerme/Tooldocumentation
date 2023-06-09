@@ -1,0 +1,92 @@
+-:DevOps With Outsystems:-
+
+
+*)It does this by providing a low-code development environment,OutSystems integrates with other systems easily,
+namely your existing databases,software that your company uses, or even your existing application's code.
+
+*)Platform Capabilities:-
+  1)CICD
+  2)Flexible infrastucture
+  3)integration with everything
+
+*)Oparation platform:- 
+  1)Service center
+  2)Lifetime
+
+*)Platform server component:-
+  1)Service studio
+  2)Lifetime
+  3)Service center --> Helps You to manage server and It is administation console. Inside factory all app avala and inside monitoring we can see logs.
+  4)integration studio --> Helps You to integrate with Exteranal systems .net, Databases
+
+*)DevOps Toolsets In outsystems:-
+   1.Trigger Pipeline
+   2.infrastucture monitor
+   3.lifetime
+   4.monitorProbe
+   5.test framework
+
+*)Devops Outsystems Reference model components:-
+  1)Develop
+  2)Quality
+  3)deploy
+  4)Monitor
+  5)Secure
+  6)Povision
+
+*)Three ways of DevOps:-
+  1)System Thinking :- standardlize,Audit all the things,measure everything
+  2)Amplity Feedback loop :- CI,Automated deployments,monitoring and alerting.
+  3)Learning And expermentation :- data driven changes,CD
+
+*)CD capabilities :- 1)Use version control for all production, 2)Automate Your deployment process,
+                     3)implement CI 4)test automation 5)monitoring 
+
+*)you can deploy and run your applications in any kind of infrastructure.
+
+--->LifeTime:
+    lifetime is the out system centralized management console to manage an infrastructure its environments the
+    users and security it enables full application lifecycle management with simplified staging and monitoring across all environments since 
+    lifetime is a web application you can simply access it in a browser with the full URL address
+*)Roles :-
+  1)Access control policy managed through roles
+    permissions: 1.full control
+                 2.Change and Deploy
+                 3.List app
+                 4.no Access
+                 5.Reuse and monitor
+
+*)Users :-
+  1)users can be created across environment,each user has one default role, can give application specific permission,not end users.
+
+*)Architecture canvas :-
+  1)Foundation :- Reusable services. non-Functional requirments , connect to external systems , no bussiness specific services
+    Element Module :- Data,logic,interface
+  2)core :- Business services . 
+  3)End User :- User Interface and processes 
+
+*)Solution Release:-
+  timeframe and those will include change management and release management
+  testing stabilization and user acceptance testing 
+  1)change management and release management
+  2)Training
+  3)Documentaion
+  4)project control
+  5)testing
+  6)user acceptance testing
+  
+*)Post-production(Monitoring and logging)
+  1. monitoring
+  2. feedback
+  3. minor change request
+  4. Hotfixing
+
+*)Performance monitoring and troubleshooting
+  1)Logging in outsystems
+   1)Error
+   2)General Audits
+   3)Web And Mobile request
+
+*)Environment monitoring
+  1)platform logs for each environment can be found under monitoring tabs.each tab displays log messages according to their type errors, general. 
+     

@@ -1,0 +1,65 @@
+--:kubernetes commands :--
+
+*)Automatic certificate renewal
+
+:--- https://piotrminkowski.com/2022/12/02/renew-certificates-on-kubernetes-with-cert-manager-and-reloader/
+:--- https://sematext.com/blog/ssl-certificate-monitoring/
+:--- https://github.com/PalmStoneGames/kube-cert-manager
+:--- https://github.com/enix/x509-certificate-exporter#readme
+:--- https://github.com/muxinc/certificate-expiry-monitor
+:--- https://devopscube.com/configure-ingress-tls-kubernetes/
+:--- https://cert-manager.io/docs/installation/helm/
+:--- https://github.com/jetstack/getting-started-kubernetes/blob/master/labs/nginx-ssl-proxy.md
+
+*)Nginx Deployment
+  https://8gwifi.org/docs/kube-nginx.jsp
+  https://github.com/kubernetes/examples/blob/master/staging/https-nginx/nginx-app.yaml
+
+sudo microk8s kubectl get svc,pod
+
+
+sudo microk8s kubectl delete svc nginxsvc
+
+sudo microk8s kubectl create -f service.yml
+
+sudo microk8s kubectl delete rc my-nginx
+
+sudo microk8s kubectl get secret
+
+sudo microk8s kubectl describe secret nginxsecret
+
+kubectl get secret nginxsecret -o jsonpath='{.data}'
+
+kubectl describe configmaps
+
+kubectl get certificate
+
+kubectl get namespace
+
+kubectl describe secret secure-callme-cert
+
+promtool check rules
+
+sudo helm install \cert-manager jetstack/cert-manager \
+  --namespace cert-manager \
+  --create-namespace \
+  --version v1.11.0 \
+
+
+sudo microk8s kubectl get secret secure-callme-cert \
+  -o jsonpath \
+  --template '{.data.tls\.key}' | base64 --decode > tls.key
+
+
+sudo microk8s kubectl get secret secure-callme-cert \
+  -o jsonpath \
+  --template '{.data.tls\.crt}' | base64 --decode > tls.crt
+
+sudo microk8s kubectl get secret secure-callme-cert \
+  -o jsonpath \
+  --template '{.data.ca\.crt}' | base64 --decode > ca.crt
+
+
+
+
+ curl https://localhost:80/caller \ --key tls.key \ --cert tls.crt \ --cacert ca.crt  I'm `secure-caller`! calling... I'm `secure-callme`!

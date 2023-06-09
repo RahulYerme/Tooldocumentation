@@ -1,0 +1,11 @@
+*) Paessler Router Traffic Grapher
+
+*) PRTG is an agentless network monitoring software from Paessler AG
+
+
+*) helps you to ensure that your computer systems are running smoothly and that no outages occur
+
+*) Network monitoring is also important to increase the efficiency of your network by knowing bandwidth and resource consumption.
+
+
+df -Ht

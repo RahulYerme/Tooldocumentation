@@ -1,0 +1,21 @@
+*)Versions:-
+https://docs.gitlab.com/ee/update/#1510
+
+https://github.com/jenkinsci/gitlab-plugin
+
+Gitlab Integration with Jenkins:-
+
+  https://docs.gitlab.com/ee/integration/jenkins.html
+ 
+  1.Configure gitlab connection in jenkins Configure System using Acccess token
+  2.Add username and Passward in credentails.
+
+  https://github.com/jenkinsci/gitlab-plugin
+
+*)Restoring gitlab backup
+https://docs.gitlab.com/ee/raketasks/restore_gitlab.html
+docker exec -it b39c8dd2bbc2  gitlab-backup restore BACKUP=
+
+*)Get all users of gitlab
+https://stackoverflow.com/questions/48431706/how-to-get-all-users-in-a-gitlab-repo
+curl -s -k --header "PRIVATE-TOKEN: <TOKEN> " "https://gitlab.secotools.net/api/v4/users?active=true&per_page=100&page=1"

@@ -1,0 +1,192 @@
+---:Microsoft Azure Fundamentals:---
+
+*) Microsoft Azure is a cloud computing platform with an ever-expanding set of services to 
+   help you build solutions to meet your business goal.
+
+-->Cloud computing:--
+
+  *)Cloud computing is the delivery of computing services over the internet. 
+    Computing services include common IT infrastructure such as virtual machines, storage, databases, and networking. 
+  *)Cloud services also expand the traditional IT offerings to include things 
+    like Internet of Things (IoT), machine learning (ML), and artificial intelligence (AI).
+
+-->Describe the shared responsibility model
+  *)You’ll always be responsible for:
+
+    The information and data stored in the cloud
+    Devices that are allowed to connect to your cloud (cell phones, computers, and so on)
+    The accounts and identities of the people, services, and devices within your organization
+  *)The cloud provider is always responsible for:
+
+    The physical datacenter
+    The physical network
+    The physical hosts
+
+--->Describe Azure Containers
+   *)Containers are a virtualization environment. Much like running multiple virtual machines on a single physical host, 
+     you can run multiple containers on a single physical or virtual host
+   *)Containers are lightweight and designed to be created, scaled out, and stopped dynamically
+   
+   *)Azure Container Instances:-
+     Azure Container Instances offer the fastest and simplest way to run a container in Azure; 
+     without having to manage any virtual machines or adopt any additional services
+   *)Azure Container Instances are a platform as a service (PaaS) offering. 
+     Azure Container Instances allow you to upload your containers and then the service will run the containers for you.
+
+--->Describe Azure Functions
+   *)Azure Functions is an event-driven, serverless compute option that doesn’t require maintaining virtual machines or containers.
+   *) Functions are commonly used when you need to perform work in response to an event (often via a REST request), timer, or message from another Azure service, 
+      and when that work can be completed quickly, within seconds or less.
+   *)Functions scale automatically based on demand, so they may be a good choice when demand is variable.
+
+--->Azure App Service
+   *)App Service enables you to build and host web apps, background jobs, mobile back-ends, and RESTful APIs in the programming language of your choice without managing infrastructure.
+     It offers automatic scaling and high availability.
+   *)Azure App Service is an HTTP-based service for hosting web applications, REST APIs, and mobile back ends.
+
+--->Types of app services
+      Web apps
+      API apps
+      WebJobs
+      Mobile apps
+--->Describe Azure Virtual Networking
+    *)Azure virtual networks and virtual subnets enable Azure resources, such as VMs, web apps, and databases, 
+      to communicate with each other, with users on the internet, and with your on-premises client computers.
+
+--->Azure Virtual Private Networks
+    *)A virtual private network (VPN) uses an encrypted tunnel within another network. 
+      VPNs are typically deployed to connect two or more trusted private networks to one another over an untrusted network (typically the public internet).
+    *)A VPN gateway is a type of virtual network gateway.
+    *)When you deploy a VPN gateway, you specify the VPN type: either policy-based or route-based
+
+--->Describe Azure ExpressRoute
+    *)With ExpressRoute, you can establish connections to Microsoft cloud services, such as Microsoft Azure and Microsoft 365. 
+    *)Connectivity can be from an any-to-any (IP VPN) network, a point-to-point Ethernet network, 
+      or a virtual cross-connection through a connectivity provider at a colocation facility.
+
+--->Describe Azure DNS
+    *)Azure DNS is a hosting service for DNS domains that provides name resolution by using Microsoft Azure infrastructure
+
+----->AZURE STORAGE SERVICES<-----
+
+
+--->Describe Azure storage accounts
+   *)A storage account provides a unique namespace for your Azure Storage data that's accessible from anywhere in the world over HTTP or HTTPS.
+     Data in this account is secure, highly available, durable, and massively scalable.
+   *)Locally redundant storage (LRS):-Locally redundant storage (LRS) replicates your data three times within a single data center in the primary region.
+                                      LRS is the lowest-cost redundancy option and offers the least durability compared to other options. 
+                                      LRS protects your data against server rack and drive failures. 
+                                      However, if a disaster such as fire or flooding occurs within the data center, 
+                                      all replicas of a storage account using LRS may be lost or unrecoverable.
+
+     Geo-redundant storage (GRS):-GRS copies your data synchronously three times within a single physical location in the primary region using LRS.
+                                  It then copies your data asynchronously to a single physical location in the secondary region (the region pair) using LRS.
+
+     Read-access geo-redundant storage (RA-GRS):-
+     Zone-redundant storage (ZRS):-zone-redundant storage (ZRS) replicates your Azure Storage data synchronously 
+                                  across three Azure availability zones in the primary region.
+
+     Geo-zone-redundant storage (GZRS):-GZRS combines the high availability provided by redundancy across availability zones with protection 
+                                          from regional outages provided by geo-replication. 
+                                        Data in a GZRS storage account is copied across three Azure availability zones in the primary region (similar to ZRS) and 
+                                        is also replicated to a secondary geographic region, using LRS, for protection from regional disasters.
+     Read-access geo-zone-redundant storage (RA-GZRS)
+
+--->Describe Azure storage redundancy
+   *)Azure Storage always stores multiple copies of your data so that it's protected from planned and unplanned events such as transient hardware failures,
+     network or power outages, and natural disasters.
+
+--->Describe Azure storage services
+   *)Azure Blobs: A massively scalable object store for text and binary data. Also includes support for big data analytics through Data Lake Storage Gen2.
+                  Azure Blob Storage is unstructured,Serving images or documents directly to a browser.Streaming video and audio.
+   *)Azure Files: Managed file shares for cloud or on-premises deployments.Azure Files offers fully managed file shares in the cloud that are accessible via the industry 
+                  standard Server Message Block (SMB) or Network File System (NFS) protocols.
+   *)Azure Queues: A messaging store for reliable messaging between application components.
+   *)Azure Disks: Block-level storage volumes for Azure VMs.
+
+---->Identify Azure data migration options
+     Azure migration:-
+     Azure Migrate is a service that helps you migrate from an on-premises environment to the cloud. 
+     Azure Migrate functions as a hub to help you manage the assessment and migration of your on-premises datacenter to Azure.
+     Integrated tools:-
+     Azure Data Box:-Azure Data Box is a physical migration service that helps transfer large amounts of data in a quick, inexpensive, and reliable way.
+
+---->Identify Azure file movement options
+     Azure also has tools designed to help you move or interact with individual files or small file groups. 
+             Among those tools are AzCopy, Azure Storage Explorer, and Azure File Sync.
+     1) azcopy:-AzCopy is a command-line utility that you can use to copy blobs or files to or from your storage account. 
+             With AzCopy, you can upload files, download files, copy files between storage accounts, and even synchronize files.
+     2) Azure Storage Explorer:-Azure Storage Explorer is a standalone app that provides a graphical interface to manage files and blobs in your Azure Storage Account.
+     3) Azure File Sync:-Azure File Sync is a tool that lets you centralize your file shares in Azure Files and 
+        keep the flexibility, performance, and compatibility of a Windows file server.
+
+----->Describe Azure identity, access, and security<------
+
+---->Describe Azure directory services
+     Azure Active Directory (Azure AD) is a directory service that enables you to sign in and 
+     access both Microsoft cloud applications and cloud applications that you develop.
+      Azure AD is Microsoft's cloud-based identity and access management service
+
+---->What is Azure Active Directory Domain Services?
+     Azure Active Directory Domain Services (Azure AD DS) is a service that provides managed domain services such as domain join, group policy, 
+     lightweight directory access protocol (LDAP), and Kerberos/NTLM authentication
+     
+---->Describe Azure authentication methods
+     Types:- 
+     single sign-on:- ingle sign-on (SSO) enables a user to sign in one time and use that 
+     credential to access multiple resources and applications from different providers.
+
+     Multifactor Authentication:-Multifactor authentication is the process of prompting a user 
+     for an extra form (or factor) of identification during the sign-in process.
+
+     passwordless authentication:-Passwordless authentication methods are more convenient because the password is removed and
+     replaced with something you have, plus something you are, or something you know.
+     
+---->Describe Azure external identities
+     An external identity is a person, device, service, etc. that is outside your organization. 
+     Azure AD External Identities refers to all the ways you can securely interact with users outside of your organization.
+     
+---->Describe Azure conditional access:-
+     Conditional Access is a tool that Azure Active Directory uses to allow (or deny) access to resources based on identity signals. 
+     These signals include who the user is, where the user is, and what device the user is requesting access from.
+     
+---->Describe Azure role-based access control
+     Azure provides built-in roles that describe common access rules for cloud resources. You can also define your own roles. 
+     Each role has an associated set of access permissions that relate to that role.
+     Scopes include:
+
+    A management group (a collection of multiple subscriptions).
+    A single subscription.
+    A resource group.
+    A single resource.
+
+---->Describe zero trust model
+     Zero Trust is a security model that assumes the worst case scenario and protects resources with that expectation. Zero Trust assumes breach at the outset,
+     The Zero Trust model flips that scenario. Instead of assuming that a device is safe because it’s within the corporate network, it requires everyone to authenticate.
+     Then grants access based on authentication rather than location. 
+
+---->Describe defense-in-depth
+     The objective of defense-in-depth is to protect information and prevent it from being stolen by those who aren't authorized to access it. 
+     The physical security layer is the first line of defense to protect computing hardware in the datacenter.
+     The identity and access layer controls access to infrastructure and change control.
+     The perimeter layer uses distributed denial of service (DDoS) protection to filter large-scale attacks before they can cause a denial of service for users.
+     The network layer limits communication between resources through segmentation and access controls.
+     The compute layer secures access to virtual machines.
+     The application layer helps ensure that applications are secure and free of security vulnerabilities.
+     The data layer controls access to business and customer data that you need to protect.
+
+---->Describe Microsoft Defender for Cloud:-
+     Defender for Cloud is a monitoring tool for security posture management and threat protection.
+     It monitors your cloud, on-premises, hybrid, and multi-cloud environments to provide guidance and notifications aimed at strengthening your security posture.
+  
+---->Azure-native protections:-
+     Azure PaaS services – Detect threats targeting Azure services including Azure App Service, Azure SQL, Azure Storage Account, and more data services. 
+     You can also perform anomaly detection on your Azure activity logs using the native integration with Microsoft Defender for Cloud Apps (formerly known as Microsoft Cloud App Security).
+     Azure data services – Defender for Cloud includes capabilities that help you automatically classify your data in Azure SQL. 
+     You can also get assessments for potential vulnerabilities across Azure SQL and Storage services, and recommendations for how to mitigate them.
+     Networks – Defender for Cloud helps you limit exposure to brute force attacks. By reducing access to virtual machine ports, using the just-in-time VM access, you can harden your network by preventing unnecessary access.
+     You can set secure access policies on selected ports, for only authorized users, allowed source IP address ranges or IP addresses, and for a limited amount of time.
+
+---->Describe factors that can affect costs in Azure
+
+     

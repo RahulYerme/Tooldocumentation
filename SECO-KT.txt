@@ -1,0 +1,61 @@
+Projects : --  
+               1) Digital Product Service (Santra Ruth)
+                   Sys Responsible :-- Leela
+               2) Market And Sales  (Pravin Kumar Saini)
+                   Sys Responsible :-- Danial barnandise
+                   Sys Developer :-- --
+
+Team :-- Tach Lead :-- Martin
+         scrum master : -- Teo
+
+
+CAS :-- Central Authentication System Hosted On Docker Container
+
+        sefagx001 :-- main Docker cas server 
+        sefagx005 :-- secondary cas server
+        
+        Start Container :--- docker compose up -d
+
+        disk space :-- df -ht
+
+        If We get Disk Warning Use :-- tail -n 10000 container_id.json > container_id.json
+
+        still disk not free use :-- docker compose down
+
+Dev Environment :-- sefags1220      
+       Task Sceduler :-- RC
+       Swow :-- Productimport  (They Ask To Run Again)
+       All Detailes Present in D Drive   
+
+Prod Environment :--sefags1264
+     Sometime Have start and stop applicatio pool in IIS Server
+
+Jenkins Server Seprate windows machines (Master sefags1052 And salve sefags217)
+
+Jobs To loot out for 1) Deploy
+                     2) mypages.mr
+                     3) Packages
+                     4) Validate
+
+jenkins certificate Update 
+
+Follow Official Documentation
+
+1) Create CSR Document (Already Created) 
+2) Go to manage computer certificate 
+
+SSMS Installation :-- 
+
+https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver16
+
+-- : GITLAB (sefagx055): --
+     
+cd ~/gitlab (All Files)
+cd /srv/gitlab/config 
+
+ backup command :- 
+  cd /srv/gitlab/data/backups
+  for remaning 2 files go cd /srv/gitlab/config
+
+
+https://portal.azure.com/#view/HubsExtension/BrowseAll     

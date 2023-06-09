@@ -1,0 +1,32 @@
+********TerraForm*******
+
+*)Terraform is an infrastructure as code (IaC) And Open Source tool 
+  that allows you to build, change, and version infrastructure safely and efficiently.
+ 
+*)The key features of Terraform are:
+
+   1)Infrastructure as Code
+
+   2)Execution Plans:-Terraform has a "planning" step where it generates an execution plan. 
+     The execution plan shows what Terraform will do when you call apply.
+   3)Uses Declarative Lang.(Define What End Result you Want.).
+
+*)Terraform Is used For Provisioning the infrastructure Like Creating VPC,install Docker in correct Order.
+
+*) Orchestration vs. Configuration Management:-
+
+   --> Orchestration/provisioning is a process where we create the infrastructure – virtual machines, network components, databases, etc. Whereas,
+ 
+   --> on the other hand, configuration management is a process of automating versioned software component installation, 
+       OS configuration tasks, network and firewall configuration, etc.
+
+*)Terraform Module for grafana and promethues:-
+ https://github.com/terorie/terraform-grafana-prometheus-dashboards/blob/master/main.tf    
+
+
+*)Adding variables into terraform
+https://upcloud.com/resources/tutorials/terraform-variables
+
+*)Terraform tutorials:
+-->https://www.youtube.com/watch?v=0YEfXu8ZhHw&list=PL6XT0grm_TfgdaAjTmLb4QedMCCMQHISm&index=41
+-->https://learn.hashicorp.com/tutorials/terraform/install-cli?in=terraform/certification-associate-tutorials

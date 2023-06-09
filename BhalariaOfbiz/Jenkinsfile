@@ -1,0 +1,44 @@
+pipeline{
+  agent any
+  	triggers {
+	
+pollSCM('H/2 * * * *')
+}
+  stages{
+    stage("Permission"){
+      steps{
+        script{
+               sh '''#! /bin/bash
+                       cd /var/lib/jenkins/workspace/Bhalaria-OFbiz-ERP
+                       chmod +xrw gradlew
+                       chmod +xrw build.gradle
+                       chmod +xrw .gradle
+                       '''
+        }
+      }
+    }
+    
+    stage("terminateOfbiz"){
+      steps{
+        script{
+          sh 'sudo ./gradlew terminateOfbiz'
+        }
+      }
+    }
+    stage("Load all seed data"){
+      steps{
+        script{
+          sh 'sudo ./gradlew "ofbiz --load-data readers=seed,seed-initial"'
+          sleep(time:60,unit:"SECONDS")
+        }
+      }
+    }
+    stage("Build"){
+      steps{
+        script{
+          sh 'sudo ./gradlew "ofbizBackground --start"'
+        }
+      }
+    }
+  }
+}

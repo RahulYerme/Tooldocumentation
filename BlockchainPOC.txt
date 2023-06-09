@@ -1,0 +1,114 @@
+  
+pipeline {
+     agent {label 'setup_node'}
+  /*agent none*/
+  
+ /* triggers {
+  pollSCM '* * * * *'
+}*/
+
+ stages {
+        stage('SonarQube analysis') {
+           
+          agent { 
+                label 'Sonarqube_Node'
+            }
+        
+            steps {
+              withEnv(['PATH+EXTRA=/opt/sonar-scanner/bin']){
+                
+                withSonarQubeEnv('sonarqube') {
+                  sh '''#! /bin/bash  
+                  sonar-scanner \
+                  -Dsonar.projectKey=Substratecodeanalysis \
+                  -Dsonar.sources=. \
+                  -Dsonar.host.url=http://3.128.111.46:9000 \
+                  -Dsonar.login=83562b4a9b93cb362975d1fd777630201afdbaa0
+                  '''
+                }
+            }
+        }
+        }
+        /*stage('install library and dependancy'){
+            steps{
+               sh "sudo apt update && sudo apt install -y git clang curl libssl-dev llvm libudev-dev make" 
+            }
+        }*/
+         /*stage('install rustup and defult toolchain') {
+            steps {
+                withEnv(['PATH+EXTRA=/home/ubuntu/.cargo/bin:/home/ubuntu/.cargo/bin']){
+                
+                   sh "rustup install stable"
+                   sh "rustup default stable" 
+                }
+            }
+         }*/
+        stage('build') {
+          parallel{
+            stage('Cargo Build'){
+            steps {
+                  
+                withEnv(['PATH+EXTRA=/home/ubuntu/.cargo/bin:/home/ubuntu/.cargo/bin']){
+                    sh '''#! /bin/bash
+                       cd /home/ubuntu/workspace/SubstrateNodeJob/chain
+                       cargo build --release
+                       '''
+                    build job: 'SubstrateFrontEndJob'
+                    
+                }
+             }
+            }
+         stage('start Polkadot') {
+            steps {   
+              build (job: "polkadotjs")
+            }
+         }
+          
+        
+        stage('Install dependency for front-end and release node template') {
+          
+            steps {
+             
+                sh '''#! /bin/bash
+                      cd /home/ubuntu/workspace/SubstrateNodeJob/ui
+                      yarn install
+                  
+                      cd /home/ubuntu/workspace/SubstrateNodeJob/chain
+                     ./target/release/demo-poc --dev --tmp --unsafe-ws-external --rpc-cors all
+                     '''
+            } 
+            }
+          }
+        }
+          /*stage('start front end template') {
+            steps {
+                sh ''' #! /bin/bash
+                      cd /home/ubuntu/workspace/SubstrateNodeJob/ui
+                      yarn start
+                   '''      
+              }
+          }*/
+       
+     }
+  
+  
+}
+
+pipeline{
+    agent {label 'setup_node'}
+    stages{
+        stage('Install dependency for front-end and release node template') {
+            steps {
+                sh "sudo sed -i 's/127.0.0.1/3.17.102.4/' /home/ubuntu/workspace/SubstrateNodeJob/ui/src/config/development.json"
+                sh '''#! /bin/bash
+                      cd /home/ubuntu/workspace/SubstrateNodeJob/ui
+                      yarn install
+                      cd /home/ubuntu/workspace/SubstrateNodeJob/ui
+                      yarn start
+                      
+                      
+                   '''
+                 }
+           }
+       }
+}

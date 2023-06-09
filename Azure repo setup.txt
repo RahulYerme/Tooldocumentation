@@ -1,0 +1,9 @@
+Azure repo setup:-
+
+https://docs.microsoft.com/en-us/azure/devops/repos/git/about-pull-requests?view=azure-devops
+
+https://docs.microsoft.com/en-us/azure/devops/repos/git/pull-request-notifications?view=azure-devops
+
+https://docs.microsoft.com/en-us/azure/devops/repos/git/branch-permissions?view=azure-devops
+
+https://docs.microsoft.com/en-us/azure/devops/repos/git/pull-requests?view=azure-devops&tabs=browser
