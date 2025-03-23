@@ -26,7 +26,3 @@
 
 *)Adding variables into terraform
 https://upcloud.com/resources/tutorials/terraform-variables
-
-*)Terraform tutorials:
--->https://www.youtube.com/watch?v=0YEfXu8ZhHw&list=PL6XT0grm_TfgdaAjTmLb4QedMCCMQHISm&index=41
--->https://learn.hashicorp.com/tutorials/terraform/install-cli?in=terraform/certification-associate-tutorials
