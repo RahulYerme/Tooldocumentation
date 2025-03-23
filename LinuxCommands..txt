@@ -19,17 +19,3 @@ Linux basic Commands:
 
 *)SSH Connection steps:- 
 -->https://stackoverflow.com/questions/36300446/ssh-permission-denied-publickey-gssapi-with-mic
-
-*)Check Open ports 
-  sudo lsof -i -P -n | grep LISTEN
-
-*)Check Running processes memory
- 
-  ps aux --sort -%mem 
-*)Security updates
-apt list --upgradable | grep "\-security"
-
-*)Updates
-apt list --upgradable
-
-Admin@123456

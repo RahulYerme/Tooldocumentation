@@ -5,6 +5,5 @@
 * Reference Link To Integrate it with jenkins:--https://medium.com/@rosaniline/setup-sonarqube-with-jenkins-declarative-pipeline-75bccdc9075f
 
 * Installation Process : - https://developerinsider.co/install-sonarqube-on-ubuntu/
-                           https://www.vultr.com/docs/install-sonarqube-on-ubuntu-20-04-lts/?utm_source=performance-max-apac&utm_medium=paidmedia&obility_id=16876059738&utm_adgroup=&utm_campaign=&utm_term=&utm_content=&gclid=EAIaIQobChMIx_evt5e7-AIVZ5NmAh2b_gk-EAAYASAAEgLhffD_BwE
  
  

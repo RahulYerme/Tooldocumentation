@@ -1,0 +1,33 @@
+steps to deploy : -
+
+git clone
+
+npm install
+
+npm run build
+
+zip -r Web.SA_Gateway_SurveyMgr.zip Web.SA_Gateway_SurveyMgr
+
+az webapp deploy --resource-group rg-tac-prod-application-compute --name tac-prod-survey-admin --src-path Web.SA_Gateway_SurveyMgr.zip
+
+
+
+
+
+
+Tac-Prod-Agent-Linux
+
+
+
+
+az webapp deploy --resource-group rg-tac-prod-application-compute --name tac-prod-survey-admin --src-path /d/Hanover/Web.SA_Gateway_SurveyMgr
+
+
+20.119.136.20
+
+https://vstsagentpackage.azureedge.net/agent/3.245.0/vsts-agent-linux-x64-3.245.0.tar.gz
+
+
+azure devops token 
+
+

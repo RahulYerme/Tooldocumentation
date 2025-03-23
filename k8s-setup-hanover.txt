@@ -1,0 +1,120 @@
+
+
+
+need to check Session Affinity
+
+need to check load balancer services endpoints
+
+need to check backend pool of load-balancer
+
+
+commands : - kubectl config set-context --current --namespace=weaviate
+
+            helm upgrade weaviate weaviate/weaviate -f values.yaml
+
+
+weaviate-0  pvc: - pvc-c18edcfb-a8a5-4b40-883d-060a90fd7c66
+
+weaviate-1  pvc: - pvc-80c9f528-62f3-4152-bbc5-92dd6b9433de
+
+
+
+curl -X POST http://9.169.240.70/v1/schema \
+  -H "Content-Type: application/json" \
+  -d '{
+        "classes": [
+          {
+            "class": "Article",
+            "vectorizer": "text2vec-contextionary",
+            "properties": [
+              {
+                "name": "title",
+                "dataType": ["text"]
+              },
+              {
+                "name": "content",
+                "dataType": ["text"]
+              }
+            ]
+          }
+        ]
+      }'
+
+import weaviate
+
+# Connect to Weaviate instance
+client = weaviate.Client("http://10.244.0.248:8080")
+
+# Check if the connection is successful
+print(client.is_ready())
+
+# Create a class and add data (like the curl example above)
+client.schema.create_class({
+    "class": "Article",
+    "properties": [
+        {"name": "title", "dataType": ["text"]},
+        {"name": "content", "dataType": ["text"]},
+    ],
+})
+
+# Add data (object)
+client.data_object.create({
+    "title": "Weaviate is Awesome",
+    "content": "Weaviate is a powerful vector search engine."
+}, "Article")
+
+
+
+
+
+
+curl http://9.169.240.70/v1/schema
+
+
+
+
+curl -X POST "http://9.169.240.70/v1/objects/batch" \
+-H "Content-Type: application/json" \
+-d '{
+  "objects": [
+    {
+      "class": "Article",
+      "properties": {
+        "title": "Weaviate and Kubernetes",
+        "content": "Weaviate is a vector database, and Kubernetes is a container orchestration tool."
+      }
+    },
+    {
+      "class": "Article",
+      "properties": {
+        "title": "AI and Machine Learning",
+        "content": "Machine learning algorithms are at the heart of AI systems, enabling prediction and pattern recognition."
+      }
+    }
+  ]
+}'
+
+curl -X POST "http://9.169.240.70/v1/objects" \
+-H "Content-Type: application/json" \
+-d '{
+  "objects": [
+    {
+      "class": "Article",
+      "properties": {
+        "title": "Weaviate and Kubernetes",
+        "content": "Weaviate is a vector database, and Kubernetes is a container orchestration tool."
+      }
+    },
+    {
+      "class": "Article",
+      "properties": {
+        "title": "AI and Machine Learning",
+        "content": "Machine learning algorithms are at the heart of AI systems, enabling prediction and pattern recognition."
+      }
+    }
+  ]
+}'
+
+
+
+

@@ -1,0 +1,37 @@
+=======> Weaviate deployment <=========
+
+
+reference links : - https://weaviate.io/developers/weaviate/configuration/backups#restore-backup
+
+                    https://weaviate.io/
+                    https://weaviate.io/developers/weaviate/installation/kubernetes
+                    https://weaviate.io/developers/academy/deployment/k8s/access_weaviate
+
+                    https://github.com/weaviate/weaviate-helm/blob/master/weaviate/templates/weaviateStatefulset.yaml 
+
+
+
+need to add braverock to cors rules set frontdoor
+
+need to add in taker gateways  cors add endpoint of frontdoor
+
+
+receipt 21002 amount 1 lakh June 12 2022 
+
+
+receipt 21003 amount 1 lakh  July 11 2022
+
+        21004 amount 1 lakh  July 11 2022
+
+        21005 amount 80k July 13 2022
+        
+        21079 amount 1 lakh 59,759 oct 17 2022
+        
+        21042 amount 27k oct 13 2022
+
+        
+1045922   1045948   
+
+
+
+https://brave-rock-03538400f.2.azurestaticapps.net/unsubscribe

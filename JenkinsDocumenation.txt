@@ -7,24 +7,12 @@
 
 
 
-*)Installation: --
-  
-  https://www.jenkins.io/doc/book/installing/linux/
+
 
 
 
 *)Get started with Jenkins Declarative Pipeline:-
 
   1)Reference Link:- https://www.blazemeter.com/blog/how-to-use-the-jenkins-declarative-pipeline
-
-
-*)Gitlab Integration with Jenkins:-
-
-  https://docs.gitlab.com/ee/integration/jenkins.html
- 
-  1.Configure gitlab connection in jenkins Configure System using Acccess token
-  2.Add username and Passward in credentails.
-
-  https://github.com/jenkinsci/gitlab-plugin
-
-*)https://wiki.jenkins.io/display/JENKINS/Spawning+processes+from+build
+  
+  https://www.ktexperts.com/how-to-install-jenkins-on-ubuntu-20-04/

@@ -1,0 +1,130 @@
+=======================================> Azure cloud With Bicep <================================================================================
+
+Commands : -
+
+To delete deployment : - 
+
+az group delete --name aad-tac-prod --yes --no-wait
+az group delete --name aad-tac-prod-design-compute --yes --no-wait
+az group delete --name aad-tac-prod-application-compute --yes --no-wait
+az group delete --name aad-tac-prod-design-database --yes --no-wait
+az group delete --name aad-tac-prod-application-database --yes --no-wait
+az group delete --name aad-tac-prod-design-network --yes --no-wait
+az group delete --name aad-tac-prod-application-network --yes --no-wait
+az group delete --name aad-tac-prod-design-storage --yes --no-wait
+az group delete --name aad-tac-prod-application-storage --yes --no-wait
+az group delete --name aad-tac-prod-design-monitoring --yes --no-wait
+az group delete --name aad-tac-prod-application-monitoring --yes --no-wait
+az group delete --name aad-tac-prod-app-identity --yes --no-wait
+
+============================================================================================================================================================
+
+To create deployment: - 
+
+az deployment group create --resource-group rg-tac-prod-application-network --template-file main.bicep --location "East US 2"
+
+
+az deployment group create --resource-group rg-tac-prod-application-network --name main
+
+
+az deployment sub create --location eastus --template-file main.bicep --parameters location='East US' environment='prod'
+
+===========================================================================================================================================================
+
+Reference links: - 
+
+bicep setup: - https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/bicep-cli
+
+
+storageAccounts:- https://learn.microsoft.com/en-us/azure/templates/microsoft.storage/storageaccounts?pivots=deployment-language-bicep
+
+key vault: - https://learn.microsoft.com/en-us/azure/key-vault/secrets/quick-create-bicep?tabs=CLI
+
+Azure Key Vault to pass secure parameter value during Bicep deployment : - https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/key-vault-parameter?tabs=azure-cli
+
+https://learn.microsoft.com/en-us/azure/key-vault/general/manage-with-cli2
+
+
+Function app: - https://learn.microsoft.com/en-us/azure/azure-functions/functions-create-first-function-bicep?tabs=CLI
+
+B2C: - https://learn.microsoft.com/en-us/azure/active-directory-b2c/overview
+
+Static web app using Azure Static Web Apps CLI:- https://learn.microsoft.com/en-us/azure/static-web-apps/static-web-apps-cli-deploy
+
+Static sites: - https://learn.microsoft.com/en-us/azure/templates/microsoft.web/staticsites?pivots=deployment-language-bicep
+
+                https://learn.microsoft.com/en-us/cli/azure/staticwebapp?view=azure-cli-latest#az-staticwebapp-disconnect
+
+                https://learn.microsoft.com/en-us/azure/static-web-apps/authentication-custom?tabs=aad%2Cinvitations
+               
+                https://learn.microsoft.com/en-us/azure/static-web-apps/application-settings#configure-application-settings
+
+privateDnsZones:- https://learn.microsoft.com/en-us/azure/templates/microsoft.network/privatednszones?pivots=deployment-language-bicep
+                  https://learn.microsoft.com/en-us/azure/templates/microsoft.network/privatednszones?pivots=deployment-language-bicep
+
+privateDnsZones/virtualNetworkLinks: - https://learn.microsoft.com/en-us/azure/templates/microsoft.network/privatednszones/virtualnetworklinks?pivots=deployment-language-bicep
+					https://github.com/Azure/azure-quickstart-templates/blob/master/quickstarts/microsoft.web/webapp-privateendpoint-vnet-injection/main.bicep
+
+privateEndpoints/privateDnsZoneGroups: - https://learn.microsoft.com/en-us/azure/templates/microsoft.network/privateendpoints/privatednszonegroups?pivots=deployment-language-bicep
+
+
+other reference links : - https://github.com/mwhooo/azure-biceps/blob/master/E04-subnet-creation/vnet.bicep
+                          https://github.com/benc-uk/bicep-iac/tree/main/modules
+                          https://github.com/Azure/azure-quickstart-templates/blob/master/quickstarts/microsoft.web/function-app-storage-private-endpoints/main.bicep#L81
+			  https://github.com/Azure/azure-quickstart-templates/tree/master/quickstarts/microsoft.web/function-app-storage-private-endpoints
+
+Keyvaultfetch: - https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/key-vault-parameter?tabs=azure-cli
+                 https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/parameters
+                 https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/parameter-files?tabs=Bicep
+                 https://github.com/benc-uk/bicep-iac/blob/main/README.md
+                 https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/linter-rule-no-hardcoded-environment-urls
+
+===========================================================================================================================================================
+
+Web app deploy: - https://learn.microsoft.com/en-us/azure/app-service/deploy-zip?tabs=cli
+
+swa deploy --deployment-token 94866a559d136fc026b7b21d14b5dfae2e31f4a37b3f58f1ff94df840557038e5-42e5b74d-f025-4dfc-ac31-f4f9c9e791f400f391504
+
+
+8c3dad1d-b6bc-4f8b-939b-8263372eced6
+
+az staticwebapp identity add --name tac-prod-survey-admin --resource-group rg-tac-prod-application-compute --identity-provider "AzureActiveDirectory" --client-id "0cfcfbb2-d908-4d58-9afb-c2bd6fd06c4f"
+
+
+======================================================================================================================================================
+
+VPN setup: - 
+
+https://learn.microsoft.com/en-us/azure/vpn-gateway/tutorial-create-gateway-portal 
+
+
+=======================================================================================================================================================
+
+Azure agent background run command
+
+https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/linux-agent?view=azure-devops
+
+======================================================================================================================================================
+
+steps to create private endpoint
+
+
+Private endpoint communication: - 
+
+
+1.Create private endpoint
+2.Check private dns zone
+3.Check dns configuration
+4.check dns recordsets
+5.Under the virtual links add
+
+=====================================================================================================================================================
+
+deployment slot
+
+https://learn.microsoft.com/en-us/azure/app-service/deploy-staging-slots?tabs=cli
+https://learn.microsoft.com/en-us/azure/app-service/deploy-continuous-deployment?tabs=github%2Cgithubactions
+https://learn.microsoft.com/en-us/azure/app-service/deploy-azure-pipelines?tabs=yaml
+          
+                  
+
